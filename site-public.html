@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>DiamondNest – Free Fire Diamond Top-Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;700&family=Sora:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--bg:#09060f;--panel:#150e24;--line:#2c1f47;--pri:#8b3dff;--pri2:#b794ff;--txt:#f1ecff;--mut:#9d92b8;--ok:#3ddc97;--warn:#ffc857;--bad:#ff6b81;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--txt);font:400 16px/1.6 "Hind Siliguri",system-ui,sans-serif}
+h1,h2,h3,.brand{font-family:Sora,"Hind Siliguri",system-ui,sans-serif;margin:0;line-height:1.15}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--pri2);outline-offset:2px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:rgba(9,6,15,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;gap:8px;padding:10px 0;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:19px;background:none;border:0;padding:0}
+nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav button,.chip{background:none;border:1px solid transparent;border-radius:8px;padding:6px 10px;color:var(--mut)}
+nav button.on{color:var(--txt);border-color:var(--line);background:var(--panel)}
+.chip{border-color:var(--line);color:var(--txt)}
+.btn{background:var(--pri);border:0;border-radius:10px;padding:11px 18px;font-weight:700;color:#fff}
+.btn:hover{background:#9d5cff}
+.btn.ghost{background:none;border:1px solid var(--line)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;padding:48px 0 32px}
+.hero h1{font-size:clamp(32px,6vw,56px);font-weight:800;letter-spacing:-.02em}
+.hero p{color:var(--mut);max-width:46ch;margin:14px 0 22px}
+.gem{width:100%;max-width:360px;justify-self:center;filter:drop-shadow(0 0 40px rgba(139,61,255,.55))}
+.trust{display:flex;gap:16px;flex-wrap:wrap;color:var(--mut);font-size:14px;margin-top:18px}
+section{padding:26px 0}
+h2{font-size:24px;margin-bottom:14px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.card .n{font:800 22px Sora,sans-serif}
+.card .p{color:var(--pri2);font-weight:700}
+.card.mem{border-color:var(--pri);background:linear-gradient(160deg,#241046,var(--panel))}
+.card button{margin-top:6px}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px;max-width:560px}
+label{display:block;font-size:14px;color:var(--mut);margin:12px 0 4px}
+input,select{width:100%;background:#0d0817;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.pay{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pay label{margin:0;border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center;color:var(--txt);cursor:pointer}
+.pay input{display:none}
+.pay input:checked+span{color:var(--pri2);font-weight:700}
+.pay label:has(input:checked){border-color:var(--pri);background:#1f1040}
+.note{background:#0d0817;border:1px dashed var(--line);border-radius:10px;padding:10px 12px;margin-top:12px;color:var(--mut);font-size:14px}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.row:last-child{border:0}
+.badge{border-radius:99px;padding:2px 10px;font-size:13px;font-weight:700;border:1px solid}
+.Pending{color:var(--warn)}.Processing{color:var(--pri2)}.Completed{color:var(--ok)}.Cancelled{color:var(--bad)}
+.tbl input{width:96px;padding:6px 8px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.stats div{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px;text-align:center}
+.stats b{display:block;font:800 22px Sora,sans-serif}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:#2a1650;border:1px solid var(--pri);padding:10px 16px;border-radius:12px;z-index:9}
+footer{border-top:1px solid var(--line);color:var(--mut);padding:20px 0 28px;font-size:14px;margin-top:20px}
+.demo{background:#1f1040;color:var(--pri2);text-align:center;font-size:13px;padding:4px}
+@media(max-width:700px){.hero{grid-template-columns:1fr;padding-top:28px}.gem{max-width:220px;order:-1}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(prefers-reduced-motion:no-preference){.gem{animation:fl 6s ease-in-out infinite}@keyframes fl{50%{transform:translateY(-8px)}}}
+.hero2{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;align-items:center;padding:44px 0 20px}
+.hero2 h1{font-size:clamp(30px,5.5vw,50px);font-weight:800;letter-spacing:-.02em}
+.hero2 p{color:var(--mut);max-width:44ch;margin-top:12px}
+.gemwrap{justify-self:center;width:min(300px,100%)}
+.gemwrap .gem{max-width:none;transform:scale(var(--s));transition:transform .5s cubic-bezier(.3,1.4,.5,1);animation:none}
+.ladder{display:flex;flex-direction:column;gap:8px}
+.lad{position:relative;display:grid;grid-template-columns:70px 1fr auto;gap:12px;align-items:center;text-align:left;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:12px 14px;overflow:hidden}
+.lad .bar{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,rgba(139,61,255,.45),rgba(139,61,255,.05));transition:width .4s}
+.lad>:not(.bar){position:relative}
+.lad b{font:800 20px Sora,sans-serif}
+.lad .rt{color:var(--mut);font-size:13px}
+.lad em{font-style:normal;background:var(--ok);color:#06110c;font-size:12px;font-weight:700;border-radius:99px;padding:1px 9px;margin-left:6px}
+.lad .pp{font-weight:700;color:var(--pri2)}
+.lad.on{border-color:var(--pri2);box-shadow:0 0 0 1px var(--pri2)}
+.buybar{position:fixed;left:0;right:0;bottom:0;z-index:6;display:flex;align-items:center;gap:14px;justify-content:center;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:rgba(21,14,36,.96);border-top:1px solid var(--pri);backdrop-filter:blur(8px)}
+.buybar small{display:block;color:var(--mut);font-size:12px;line-height:1}
+.pp2{font:800 20px Sora,sans-serif;color:var(--pri2)}
+footer{padding-bottom:96px}
+.toast{bottom:84px}
+@media(max-width:700px){.hero2{grid-template-columns:1fr}.gemwrap{order:-1;width:170px}.lad{grid-template-columns:56px 1fr auto}}
+</style>
+</head>
+<body>
+<header><div class="wrap bar" id="bar"></div></header>
+<main class="wrap" id="app"><p style="padding:40px 0;color:#9d92b8">…</p></main>
+<footer><div class="wrap" id="foot"></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+
+const LOGO='<svg width="26" height="26" viewBox="0 0 40 40" aria-hidden="true"><polygon points="8,14 14,6 26,6 32,14 20,36" fill="#8b3dff"/><polygon points="8,14 32,14 20,36" fill="#b794ff" opacity=".55"/><polygon points="14,6 20,14 26,6" fill="#e6dbff"/></svg>';
+const GEM='<svg class="gem" viewBox="0 0 200 200" role="img" aria-label="Diamond"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c9a8ff"/><stop offset="1" stop-color="#5b1fd1"/></linearGradient></defs><polygon points="40,70 70,25 130,25 160,70 100,175" fill="url(#g)"/><polygon points="40,70 160,70 100,175" fill="#7a35f0" opacity=".7"/><polygon points="70,25 100,70 130,25" fill="#efe6ff"/><polygon points="40,70 70,25 100,70" fill="#a77bff"/><polygon points="160,70 130,25 100,70" fill="#8d58ff"/><polygon points="40,70 100,70 100,175" fill="#4a14b3" opacity=".55"/></svg>';
+const L={
+bn:{demo:'এটি ডেমো। অর্ডার ও ডাটা শুধু এই পেজে থাকে।',home:'হোম',orders:'আমার অর্ডার',admin:'অ্যাডমিন',login:'লগইন',logout:'লগআউট',
+h1:'সবচেয়ে দ্রুত Free Fire ডায়মন্ড টপ-আপ',sub:'Player ID দিন, বিকাশ, নগদ বা রকেটে পেমেন্ট করুন। ডায়মন্ড সরাসরি আপনার অ্যাকাউন্টে যাবে।',cta:'ডায়মন্ড কিনুন',
+t1:'Player ID দিয়ে অর্ডার',t2:'বিকাশ · নগদ · রকেট',t3:'অর্ডারের স্ট্যাটাস দেখুন',
+dia:'ডায়মন্ড প্যাকেজ',mem:'মেম্বারশিপ',buy:'কিনুন',em:'ইমেইল',pw:'পাসওয়ার্ড (কমপক্ষে ৬ অক্ষর)',reg:'অ্যাকাউন্ট খুলুন',haveacc:'আগে থেকেই অ্যাকাউন্ট আছে',newacc:'নতুন অ্যাকাউন্ট',confirm:'আপনার ইমেইলে একটি লিংক পাঠানো হয়েছে, সেটি চাপুন, তারপর লগইন করুন',e4:'নাম, ইমেইল ও কমপক্ষে ৬ অক্ষরের পাসওয়ার্ড দিন',e5:'অর্ডার জমা হয়নি, আবার চেষ্টা করুন',badlogin:'ইমেইল বা পাসওয়ার্ড ভুল',empty:'এখন কোনো প্যাকেজ নেই',best:'সেরা রেট',sel:'আপনার বাছাই',unit:'ডায়মন্ড',w:'Weekly মেম্বারশিপ',m:'Monthly মেম্বারশিপ',
+co:'অর্ডার সম্পন্ন করুন',pid:'Free Fire Player ID',pm:'পেমেন্ট পদ্ধতি',send:'এই নম্বরে Send Money করুন',tx:'Transaction ID',place:'অর্ডার জমা দিন',back:'ফিরে যান',
+au:'লগইন / রেজিস্ট্রেশন',nm:'আপনার নাম',ph:'মোবাইল নম্বর',go:'চালিয়ে যান',
+noord:'এখনো কোনো অর্ডার নেই। প্রথম প্যাকেজটি বেছে নিন।',
+st:{Pending:'পেন্ডিং',Processing:'প্রসেসিং',Completed:'সম্পন্ন',Cancelled:'বাতিল'},
+ad:'অ্যাডমিন প্যানেল',pk:'প্যাকেজ ও দাম (৳)',pn:'পেমেন্ট নম্বর',add:'নতুন প্যাকেজ যোগ করুন',amt:'ডায়মন্ড সংখ্যা',pr:'দাম',al:'সব অর্ডার',
+e1:'সঠিক Player ID দিন (৬–১২ সংখ্যা)',e2:'Transaction ID লিখুন',e3:'আগে লগইন করুন',ok:'অর্ডার জমা হয়েছে',sv:'সেভ হয়েছে',
+tot:['মোট অর্ডার','পেন্ডিং','সম্পন্ন','বিক্রি (৳)'],ft:'© DiamondNest। Free Fire গেমের নাম Garena-র।'},
+en:{demo:'This is a demo. Orders and data live only on this page.',home:'Home',orders:'My orders',admin:'Admin',login:'Log in',logout:'Log out',
+h1:'The fastest Free Fire diamond top-up',sub:'Enter your Player ID, pay with bKash, Nagad or Rocket. Diamonds go straight to your account.',cta:'Buy diamonds',
+t1:'Order with Player ID',t2:'bKash · Nagad · Rocket',t3:'Track your order status',
+dia:'Diamond packs',mem:'Memberships',buy:'Buy',em:'Email',pw:'Password (min 6 characters)',reg:'Create account',haveacc:'I already have an account',newacc:'New account',confirm:'We sent a link to your email. Open it, then log in',e4:'Enter your name, email and a password of 6+ characters',e5:'Order failed, please try again',badlogin:'Wrong email or password',empty:'No packs available right now',best:'Best rate',sel:'Your pick',unit:'Diamonds',w:'Weekly membership',m:'Monthly membership',
+co:'Complete your order',pid:'Free Fire Player ID',pm:'Payment method',send:'Send Money to this number',tx:'Transaction ID',place:'Place order',back:'Back',
+au:'Log in / Register',nm:'Your name',ph:'Mobile number',go:'Continue',
+noord:'No orders yet. Pick your first pack.',
+st:{Pending:'Pending',Processing:'Processing',Completed:'Completed',Cancelled:'Cancelled'},
+ad:'Admin panel',pk:'Packs and prices (৳)',pn:'Payment numbers',add:'Add a new pack',amt:'Diamonds',pr:'Price',al:'All orders',
+e1:'Enter a valid Player ID (6–12 digits)',e2:'Enter the Transaction ID',e3:'Log in first',ok:'Order placed',sv:'Saved',
+tot:['Total orders','Pending','Completed','Sales (৳)'],ft:'© DiamondNest. Free Fire is a trademark of Garena.'}};
+const sb=supabase.createClient('https://vikphnydkrmobdwklzoi.supabase.co','sb_publishable_GzXHyr7bo8QGZ8w6NQ9x0Q_KK0JtUqK');
+const S_KIND={diamond:'d',weekly:'w',monthly:'m'};
+const mapPk=r=>({id:r.id,k:S_KIND[r.kind],a:r.amount,p:Number(r.price),on:r.active});
+const val=id=>(document.getElementById(id)||{value:''}).value.trim();
+const S={lang:'bn',view:'home',user:null,pick:null,sel:null,toast:'',all:[],items:[],pay:{},orders:[],mode:'login',busy:false};
+const t=k=>L[S.lang][k];
+const nm=i=>!i?'—':i.k==='d'?i.a+' '+t('unit'):t(i.k);
+const it=id=>S.all.find(x=>x.id===id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const badge=s=>`<span class="badge ${s}">${t('st')[s]||esc(s)}</span>`;
+const uname=u=>u?(u.user_metadata&&u.user_metadata.name)||u.email:null;
+async function fetchOrders(){const r=await sb.from('orders').select('*').order('id',{ascending:false});return (r.data||[]).map(o=>({id:o.id,pid:o.player_id,item:o.package_id,price:Number(o.price),pm:o.method,tx:o.trx_id,s:o.status}))}
+async function load(){const [p,n]=await Promise.all([sb.from('packages').select('*').order('sort'),sb.from('payment_numbers').select('*')]);
+S.all=(p.data||[]).map(mapPk);S.items=S.all.filter(i=>i.on);S.pay={};(n.data||[]).forEach(r=>S.pay[r.method]=r.number);
+S.orders=S.user?await fetchOrders():[]}
+function card(i){return `<div class="card ${i.k==='d'?'':'mem'}"><span class="n">${nm(i)}</span><span class="p">৳${i.p}</span><button class="btn" data-act="buy" data-id="${i.id}">${t('buy')}</button></div>`}
+function home(){const dia=S.items.filter(i=>i.k==='d'),mx=Math.max(...dia.map(i=>i.a)),pk=it(S.pick)||dia[0],best=dia.reduce((b,i)=>i.p/i.a<b.p/b.a?i:b),sc=(.55+.45*pk.a/mx).toFixed(2);
+return `<div class="hero2"><div><h1>${t('h1')}</h1><p>${t('sub')}</p></div><div class="gemwrap" style="--s:${sc}">${GEM}</div></div>
+<section id="packs"><h2>${t('dia')}</h2><div class="ladder">${dia.map(i=>`<button class="lad ${i.id===pk.id?'on':''}" data-act="pick" data-id="${i.id}"><span class="bar" style="width:${Math.max(8,i.a/mx*100)}%"></span><b>${i.a}</b><span class="rt">৳${(i.p/i.a*100).toFixed(1)} / 100 ${i===best?`<em>${t('best')}</em>`:''}</span><span class="pp">৳${i.p}</span></button>`).join('')}</div>
+<h2 style="margin-top:30px">${t('mem')}</h2><div class="grid">${S.items.filter(i=>i.k!=='d').map(card).join('')}</div></section>
+<div class="buybar"><div><small>${t('sel')}</small><b>${nm(pk)}</b></div><b class="pp2">৳${pk.p}</b><button class="btn" data-act="buy" data-id="${pk.id}">${t('buy')}</button></div>`}
+function checkout(){const i=it(S.sel);if(!i)return home();
+return `<section><div class="panel"><h2>${t('co')}</h2><p><b>${nm(i)}</b> · ৳${i.p}</p>
+<label for="pid">${t('pid')}</label><input id="pid" inputmode="numeric" maxlength="12" placeholder="123456789">
+<label>${t('pm')}</label><div class="pay">${Object.keys(S.pay).map((k,x)=>`<label><input type="radio" name="pm" value="${k}" ${x?'':'checked'} data-chg="pm"><span>${k}</span></label>`).join('')}</div>
+<div class="note" id="paynote"></div>
+<label for="tx">${t('tx')}</label><input id="tx" placeholder="8N7A6D5C">
+<div style="display:flex;gap:8px;margin-top:18px"><button class="btn" data-act="place">${t('place')}</button><button class="btn ghost" data-act="go" data-v="home">${t('back')}</button></div></div></section>`}
+function auth(){const r=S.mode==='reg';return `<section><div class="panel"><h2>${t('au')}</h2>${r?`<label for="un">${t('nm')}</label><input id="un" autocomplete="name"><label for="up">${t('ph')}</label><input id="up" inputmode="tel" autocomplete="tel">`:''}<label for="ue">${t('em')}</label><input id="ue" type="email" autocomplete="email"><label for="upw">${t('pw')}</label><input id="upw" type="password" autocomplete="${r?'new-password':'current-password'}"><div style="margin-top:18px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-act="${r?'signup':'signin'}">${r?t('reg'):t('login')}</button><button class="btn ghost" data-act="mode">${r?t('haveacc'):t('newacc')}</button></div></div></section>`}
+function orders(){const l=S.orders;return `<section><h2>${t('orders')}</h2><div class="panel" style="max-width:none">${l.length?l.map(o=>`<div class="row"><div><b>#${o.id}</b> · ${nm(it(o.item))}<br><small style="color:var(--mut)">ID ${esc(o.pid)} · ${o.pm} · ${esc(o.tx)}</small></div><div>৳${o.price} ${badge(o.s)}</div></div>`).join(''):`<p style="color:var(--mut)">${t('noord')}</p>`}</div></section>`}
+function render(){document.documentElement.lang=S.lang;const v=S.view,nb=(k,l)=>`<button class="${v===k?'on':''}" data-act="go" data-v="${k}">${l}</button>`;
+document.getElementById('bar').innerHTML=`<button class="brand" data-act="go" data-v="home">${LOGO}DiamondNest</button><nav>${nb('home',t('home'))}${nb('orders',t('orders'))}</nav><button class="chip" data-act="lang">${S.lang==='bn'?'EN':'বাং'}</button>${S.user?`<button class="chip" data-act="logout">${esc(S.user)} · ${t('logout')}</button>`:`<button class="btn" data-act="go" data-v="auth" style="padding:6px 12px">${t('login')}</button>`}`;
+document.getElementById('app').innerHTML=(S.items.length||v!=='home')?({home,checkout,auth,orders})[v]():`<p style="padding:40px 0;color:var(--mut)">${t('empty')}</p>`;
+document.getElementById('foot').textContent=t('ft');payNote();
+if(S.toast){const d=document.createElement('div');d.className='toast';d.setAttribute('role','status');d.textContent=S.toast;document.body.appendChild(d);S.toast='';setTimeout(()=>d.remove(),2600)}}
+function payNote(){const n=document.getElementById('paynote');if(!n)return;const m=document.querySelector('input[name=pm]:checked');if(m)n.innerHTML=`${t('send')}: <b style="color:var(--txt)">${esc(S.pay[m.value]||'')}</b> (${m.value})`}
+function go(v){if(v==='orders'&&!S.user){S.view='auth';say(t('e3'));return}S.view=v;render();window.scrollTo(0,0)}
+function say(m){S.toast=m;render()}
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-act]');if(!b||S.busy)return;const a=b.dataset.act;
+if(a==='go'){go(b.dataset.v)}
+else if(a==='pick'){S.pick=Number(b.dataset.id);render()}
+else if(a==='lang'){S.lang=S.lang==='bn'?'en':'bn';render()}
+else if(a==='mode'){S.mode=S.mode==='reg'?'login':'reg';render()}
+else if(a==='buy'){S.sel=Number(b.dataset.id);if(!S.user){S.view='auth';say(t('e3'));return}go('checkout')}
+else if(a==='signup'){const name=val('un'),phone=val('up'),email=val('ue'),pw=(document.getElementById('upw')||{}).value||'';
+if(!name||!email||pw.length<6){say(t('e4'));return}
+S.busy=true;const r=await sb.auth.signUp({email,password:pw,options:{data:{name,phone}}});S.busy=false;
+if(r.error){say(r.error.message);return}
+if(!r.data.session){S.mode='login';say(t('confirm'))}}
+else if(a==='signin'){const email=val('ue'),pw=(document.getElementById('upw')||{}).value||'';
+S.busy=true;const r=await sb.auth.signInWithPassword({email,password:pw});S.busy=false;
+if(r.error){say(t('badlogin'))}}
+else if(a==='logout'){await sb.auth.signOut();S.view='home'}
+else if(a==='place'){const p=val('pid'),x=val('tx'),m=document.querySelector('input[name=pm]:checked').value;
+if(!/^\d{6,12}$/.test(p)){say(t('e1'));return}if(x.length<6){say(t('e2'));return}
+S.busy=true;const r=await sb.from('orders').insert({package_id:S.sel,player_id:p,method:m,trx_id:x});S.busy=false;
+if(r.error){say(t('e5'));return}
+S.sel=null;S.orders=await fetchOrders();S.view='orders';say(t('ok'))}});
+document.addEventListener('change',e=>{if(e.target.dataset.chg==='pm')payNote()});
+sb.auth.onAuthStateChange((ev,ses)=>{S.user=ses?uname(ses.user):null;setTimeout(async()=>{S.orders=ses?await fetchOrders():[];if(ses&&S.view==='auth')S.view=S.sel?'checkout':'home';if(!ses&&S.view==='orders')S.view='home';render()},0)});
+(async()=>{const s=await sb.auth.getSession();S.user=s.data.session?uname(s.data.session.user):null;await load();render()})();
+</script>
+</body>
+</html>
